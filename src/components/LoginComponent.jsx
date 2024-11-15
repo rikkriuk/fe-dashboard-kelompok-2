@@ -31,7 +31,7 @@ const LoginComponent = () => {
               type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
               id="email"
-              value="contohnya"
+              placeholder="example@gmail.com"
             />
           </div>
           <div className="mb-4">
@@ -42,7 +42,7 @@ const LoginComponent = () => {
               <input
                 type={passwordType}
                 id="password"
-                value="feryokta"
+                placeholder=""
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
               />
               <button
@@ -66,7 +66,7 @@ const LoginComponent = () => {
             <p>
               Dont Have Account ?{" "}
               <Link to="/register">
-                <span className="text-primary">Daftar disini</span>
+                <span className="text-primary">Register</span>
               </Link>{" "}
             </p>
           </div>

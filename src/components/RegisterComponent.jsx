@@ -32,7 +32,7 @@ const RegisterComponent = () => {
                 type="text"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                 id="name"
-                value="contohnya"
+                placeholder="Name"
               />
             </div>
             <div className="mb-4">
@@ -43,7 +43,7 @@ const RegisterComponent = () => {
                 type="text"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                 id="email"
-                value="contohnya"
+                placeholder="example@gmail.com"
               />
             </div>
             <div className="mb-4">
@@ -54,7 +54,7 @@ const RegisterComponent = () => {
                 <input
                   type={passwordType}
                   id="password"
-                  value="feryokta"
+                  placeholder=""
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                 />
                 <button
