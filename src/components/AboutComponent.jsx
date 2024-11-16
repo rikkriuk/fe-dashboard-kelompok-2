@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FaHome,
   FaAngleRight,
   FaSearch,
   FaPlus,
-  FaPencilAlt,
+  // FaPencilAlt,
 } from "react-icons/fa";
+import useList from "./UseList";
 
 const AboutComponent = () => {
+  const { data } = useList(
+    "https://cms-api-t2-lumoshive-academy.vercel.app/api/about-us"
+  );
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <div>
       <div className="container mx-auto px-52 pt-10">
@@ -71,9 +78,6 @@ const AboutComponent = () => {
                   Title
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Message
-                </th>
-                <th scope="col" className="px-6 py-3">
                   Image
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -82,20 +86,23 @@ const AboutComponent = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td className="px-6 py-4">1</td>
-                <td className="px-6 py-4">CEO Academy</td>
-                <td className="px-6 py-4">pelayanan yang sangat mantap</td>
-                <td className="px-6 py-4">aboutUs.png</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <a
-                    href="testimonial/edit/1"
-                    className="inline-flex items-center mx-3 font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
-                  >
-                    <FaPencilAlt />
-                  </a>
-                </td>
-              </tr>
+              {data ? (
+                <tr>
+                  <td>{data.title}</td>
+                  <td>{data.desc}</td>
+                  <td>
+                    <img
+                      src={data.imageUrl}
+                      alt={data.title}
+                      style={{ width: "100px", height: "auto" }}
+                    />
+                  </td>
+                </tr>
+              ) : (
+                <tr>
+                  <td colSpan="3">No data available</td>
+                </tr>
+              )}
             </tbody>
           </table>
           <nav

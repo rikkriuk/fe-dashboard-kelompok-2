@@ -4,6 +4,7 @@ import Layout from "./components/LayoutComponent";
 import "flowbite";
 import PortfolioContainer from "./containers/PortfolioContainer";
 import TestimonialContainer from "./containers/TestimonialContainer";
+import AboutComponent from "./components/AboutComponent";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             element={<PortfolioContainer />}
           />
         </Route>
+        <Route path="/dashboard/about-us" element={<AboutComponent />}></Route>
       </Routes>
     </Router>
   );
