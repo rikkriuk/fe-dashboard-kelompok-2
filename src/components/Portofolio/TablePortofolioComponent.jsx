@@ -9,7 +9,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 
-const TablePortofolioComponent = () => {
+const TablePortofolioComponent = ({ portofolio }) => {
   return (
     <div className="container mx-auto px-52 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
@@ -53,12 +53,13 @@ const TablePortofolioComponent = () => {
                 placeholder="Search"
               />
             </div>
-            <button
+            <a
               type="button"
+              href="portofolio/add"
               className="px-3 py-2 text-xs font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap inline-flex items-center"
             >
               <FaPlus className="mr-2" /> Add Data
-            </button>
+            </a>
           </div>
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto">
@@ -87,15 +88,10 @@ const TablePortofolioComponent = () => {
           <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">Portofolio</td>
-              <td className="px-6 py-4">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Ducimus consectetur quod rerum, commodi aut impedit sit magni
-                maxime et eveniet explicabo vitae vel, aliquam esse nam?
-                Corrupti vitae officia mollitia!
-              </td>
-              <td className="px-6 py-4">12/12/2025</td>
-              <td className="px-6 py-4">portofolio.png</td>
+              <td className="px-6 py-4">{portofolio.title}</td>
+              <td className="px-6 py-4">{portofolio.content}</td>
+              <td className="px-6 py-4">{portofolio.date}</td>
+              <td className="px-6 py-4">{portofolio.image}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <a
                   href="#"
@@ -104,39 +100,7 @@ const TablePortofolioComponent = () => {
                   <FaEye />
                 </a>
                 <a
-                  href="#"
-                  className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 me-3 hover:text-blue-700 dark:hover:text-blue-400"
-                >
-                  <FaPencilAlt />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400"
-                >
-                  <FaTrashAlt />
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">Portofolio</td>
-              <td className="px-6 py-4">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Ducimus consectetur quod rerum, commodi aut impedit sit magni
-                maxime et eveniet explicabo vitae vel, aliquam esse nam?
-                Corrupti vitae officia mollitia!
-              </td>
-              <td className="px-6 py-4">12/12/2025</td>
-              <td className="px-6 py-4">portofolio.png</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <a
-                  href="#"
-                  className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 me-3 hover:text-blue-700 dark:hover:text-blue-400"
-                >
-                  <FaEye />
-                </a>
-                <a
-                  href="#"
+                  href="portofolio/edit/1"
                   className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 me-3 hover:text-blue-700 dark:hover:text-blue-400"
                 >
                   <FaPencilAlt />
