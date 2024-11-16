@@ -1,20 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/LayoutComponent";
-import PortofolioContainer from "./containers/PortofolioContainer";
-import TestimonialContainer from "./containers/TestimonialContainer";
+import "flowbite";
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={"Dashboard"} />
-          <Route path="/*" element={"tes"} />
-          <Route path="/testimonial" element={<TestimonialContainer />} />
-          <Route path="/portofolio" element={<PortofolioContainer />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="dashboard" element={<h1>Dashboard</h1>} />
+          <Route path="dashboard/testimonial" element={<h1>Testimonial</h1>} />
+        </Route>
+      </Routes>
     </Router>
   );
 };
