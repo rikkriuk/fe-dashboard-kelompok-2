@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import {
   FaUsers,
   FaBriefcase,
@@ -18,6 +19,7 @@ import {
 
 const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
   const location = useLocation();
+  const { logout } = useAuth();
   const [isActivitiesOpen, setIsActivitiesOpen] = useState(true);
 
   const isActive = (path) => location.pathname === path;
@@ -207,7 +209,7 @@ const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
           {/* Logout */}
           <li className="mt-4">
             <button
-              onClick={() => console.log("Logout clicked")}
+              onClick={logout}
               className="flex items-center w-full p-3 text-gray-700 hover:bg-gray-100 rounded-md"
             >
               <FaSignOutAlt className="text-primary" />
