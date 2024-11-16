@@ -46,7 +46,7 @@ const FormPortfolioComponent = ({ isEdit }) => {
         <form>
           <div className="mb-6">
             <label
-              for="title"
+              htmlFor="title"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Title
@@ -62,7 +62,7 @@ const FormPortfolioComponent = ({ isEdit }) => {
           </div>
           <div className="mb-6">
             <label
-              for="date"
+              htmlFor="date"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Date
@@ -78,7 +78,7 @@ const FormPortfolioComponent = ({ isEdit }) => {
           </div>
           <div className="mb-6">
             <label
-              for="content"
+              htmlFor="content"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Content
@@ -95,7 +95,7 @@ const FormPortfolioComponent = ({ isEdit }) => {
           <div className="mb-6">
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              for="imageUrl"
+              htmlFor="imageUrl"
             >
               Upload Image
             </label>
