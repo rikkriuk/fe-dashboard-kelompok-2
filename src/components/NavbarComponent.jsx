@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import userImage from "../assets/user-image.jpg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavbarComponent = () => {
+   const { logout } = useAuth();
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
    const toggleDropdown = () => {
       setIsDropdownOpen((prev) => !prev);
-   };
-
-   const handleLogout = () => {
-      console.log("Logout clicked");
    };
 
    return (
@@ -60,7 +58,7 @@ const NavbarComponent = () => {
                               </li>
                               <li>
                                  <button
-                                    onClick={handleLogout}
+                                    onClick={logout}
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                  >
                                     Sign out
