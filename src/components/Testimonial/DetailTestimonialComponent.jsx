@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
 
-const DetailPortofolioComponent = ({ portofolio }) => {
+const DetailtestimonialComponent = ({ testimonial }) => {
   return (
     <div className="container mx-auto px-52 pt-10 mb-48">
       <nav className="flex mb-3" aria-label="Breadcrumb">
@@ -18,18 +18,18 @@ const DetailPortofolioComponent = ({ portofolio }) => {
 
           <li className="inline-flex items-center">
             <a
-              href="/portofolio"
+              href="/testimonial"
               className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <FaAngleRight />
-              Portofolio
+              Testimonial
             </a>
           </li>
           <li aria-current="page">
             <div className="flex items-center">
               <FaAngleRight />
               <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                Detail Portofolio
+                Detail Testimonial
               </span>
             </div>
           </li>
@@ -39,10 +39,21 @@ const DetailPortofolioComponent = ({ portofolio }) => {
       <div className="relative overflow-x-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center flex-column flex-wrap md:flex-row mb-4">
           <h5 className="text-xl font-bold text-gray-600 dark:text-white">
-            Detail Portofolio
+            Detail testimonial
           </h5>
         </div>
         <div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="name"
+            >
+              Name:
+            </label>
+            <p className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              {testimonial.name}
+            </p>
+          </div>
           <div className="mb-4">
             <label
               className="block text-gray-700 font-bold mb-2"
@@ -51,7 +62,7 @@ const DetailPortofolioComponent = ({ portofolio }) => {
               Title:
             </label>
             <p className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              {portofolio.title}
+              {testimonial.title}
             </p>
           </div>
           <div className="mb-4">
@@ -62,7 +73,7 @@ const DetailPortofolioComponent = ({ portofolio }) => {
               Content:
             </label>
             <p className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              {portofolio.content}
+              {testimonial.message}
             </p>
           </div>
           <div className="mb-4">
@@ -73,7 +84,7 @@ const DetailPortofolioComponent = ({ portofolio }) => {
               Date:
             </label>
             <p className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              {portofolio.date}
+              {testimonial.date}
             </p>
           </div>
           <div className="mb-4">
@@ -86,8 +97,8 @@ const DetailPortofolioComponent = ({ portofolio }) => {
             <figure className="max-w-lg">
               <img
                 className="h-auto max-w-full rounded-lg"
-                src={portofolio.image}
-                alt={portofolio.title}
+                src={testimonial.image}
+                alt={testimonial.title}
               />
             </figure>
           </div>
@@ -97,4 +108,4 @@ const DetailPortofolioComponent = ({ portofolio }) => {
   );
 };
 
-export default DetailPortofolioComponent;
+export default DetailtestimonialComponent;
