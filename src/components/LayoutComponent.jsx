@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import NavbarComponent from "./NavbarComponent";
 import SidebarComponent from "./SidebarComponent";
+import { Outlet } from "react-router-dom";
 
-const LayoutComponent = ({ children }) => {
+const LayoutComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -12,7 +13,7 @@ const LayoutComponent = ({ children }) => {
       <SidebarComponent isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <main className="transition-all duration-300 w-full" >
         <NavbarComponent />
-        {children}
+        <Outlet />
       </main>
     </div>
   );

@@ -6,11 +6,12 @@ import "flowbite";
 const App = () => {
   return (
     <Router>
-      <Layout>
         <Routes>
-          <Route path="/" element={<h1>Hello world</h1>} />
+          <Route path="/" element={<Layout />}>
+            <Route path="dashboard" element={<h1>Dashboard</h1>} />
+            <Route path="dashboard/testimonial" element={<h1>Testimonial</h1>} />
+          </Route>
         </Routes>
-      </Layout>
     </Router>
   )
 }
