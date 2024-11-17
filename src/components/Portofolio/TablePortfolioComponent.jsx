@@ -7,20 +7,30 @@ import {
   FaPlus,
   FaSearch,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import OverlayComponent from "../OverlayComponent";
 
-const TablePortfolioComponent = ({ portfolio }) => {
+const TablePortfolioComponent = ({
+  portfolio,
+  navigationForm,
+  handleDelete,
+  toggleOverlay,
+  isOverlayVisible,
+  overlayImageUrl,
+  setIsOverlayVisible,
+}) => {
   return (
-    <div className="container mx-auto px-52 pt-10">
+    <div className="container mx-auto px-10 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <FaHome className="mr-2" />
               Home
-            </a>
+            </Link>
           </li>
 
           <li aria-current="page">
@@ -52,13 +62,13 @@ const TablePortfolioComponent = ({ portfolio }) => {
                 placeholder="Search"
               />
             </div>
-            <a
+            <button
               type="button"
-              href="portfolio/add"
+              onClick={() => navigationForm("add", "")}
               className="px-3 py-2 text-xs font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap inline-flex items-center"
             >
               <FaPlus className="mr-2" /> Add Data
-            </a>
+            </button>
           </div>
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto">
@@ -85,29 +95,47 @@ const TablePortfolioComponent = ({ portfolio }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">{portfolio.title}</td>
-              <td className="px-6 py-4">{portfolio.content}</td>
-              <td className="px-6 py-4">{portfolio.date}</td>
-              <td className="px-6 py-4">{portfolio.image}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <a
-                  href="portfolio/edit/1"
-                  className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
-                >
-                  <FaPencilAlt />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
-                >
-                  <FaTrashAlt />
-                </a>
-              </td>
-            </tr>
+            {portfolio.map((data, index) => (
+              <tr
+                key={index}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              >
+                <td className="px-6 py-4">{index + 1}</td>
+                <td className="px-6 py-4">{data.title}</td>
+                <td className="px-6 py-4">{data.content}</td>
+                <td className="px-6 py-4">{data.date}</td>
+                <td>
+                  <button
+                    onClick={() => toggleOverlay(data.imageUrl)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Show Image
+                  </button>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <button
+                    onClick={() => navigationForm("edit", data)}
+                    className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
+                  >
+                    <FaPencilAlt />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(data.id)}
+                    className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
+                  >
+                    <FaTrashAlt />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        {isOverlayVisible && (
+          <OverlayComponent
+            imageUrl={overlayImageUrl}
+            onClose={() => setIsOverlayVisible(false)}
+          />
+        )}
         <nav
           className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
           aria-label="Table navigation"
@@ -124,37 +152,37 @@ const TablePortfolioComponent = ({ portfolio }) => {
           </span>
           <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
             <li>
-              <a
-                href="#"
+              <Link
+                to="#"
                 className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 Previous
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="#"
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 1
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="#"
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 2
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
+              <Link
+                to="#"
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 Next
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

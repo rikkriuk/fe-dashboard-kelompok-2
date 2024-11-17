@@ -1,29 +1,35 @@
 import React from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const FormTestimonialComponent = ({ isEdit }) => {
+const FormTestimonialComponent = ({
+  isEdit,
+  form,
+  handleChange,
+  handleSubmit,
+}) => {
   return (
-    <div className="container mx-auto px-52 pt-10 ">
+    <div className="container mx-auto px-10 pt-10 ">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <FaHome className="mr-2" />
               Home
-            </a>
+            </Link>
           </li>
 
           <li className="inline-flex items-center">
-            <a
+            <Link
               href="#"
               className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <FaAngleRight />
               Testimonial
-            </a>
+            </Link>
           </li>
           <li aria-current="page">
             <div className="flex items-center">
@@ -43,7 +49,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
           </h5>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label
               htmlFor="name"
@@ -56,7 +62,8 @@ const FormTestimonialComponent = ({ isEdit }) => {
               id="name"
               name="name"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="title testimonial"
+              onChange={handleChange}
+              value={form.name}
               required
             />
           </div>
@@ -72,7 +79,8 @@ const FormTestimonialComponent = ({ isEdit }) => {
               id="title"
               name="title"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="title testimonial"
+              onChange={handleChange}
+              value={form.title}
               required
             />
           </div>
@@ -88,7 +96,8 @@ const FormTestimonialComponent = ({ isEdit }) => {
               id="date"
               name="date"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="date testimonial"
+              onChange={handleChange}
+              value={form.date}
               required
             />
           </div>
@@ -103,8 +112,10 @@ const FormTestimonialComponent = ({ isEdit }) => {
               id="message"
               name="message"
               rows="4"
+              onChange={handleChange}
+              value={form.message}
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Write your content here..."
+              required
             ></textarea>
           </div>
 
@@ -117,18 +128,28 @@ const FormTestimonialComponent = ({ isEdit }) => {
             </label>
             <input
               className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="imageUrl_help"
-              id="imageUrl"
-              name="imageUrl"
+              aria-describedby="image_help"
+              id="image"
+              name="image"
               type="file"
               accept=".jpg, .jpeg, .png"
+              onChange={handleChange}
             />
             <p
               className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-              id="imageUrl_help"
+              id="image_help"
             >
               JPEG, JPG or PNG
             </p>
+            {form.imageUrl && (
+              <div className="mt-4">
+                <img
+                  src={form.imageUrl || form.image}
+                  alt="Testimonial Preview"
+                  className="max-w-full h-auto rounded"
+                />
+              </div>
+            )}
           </div>
 
           <button
