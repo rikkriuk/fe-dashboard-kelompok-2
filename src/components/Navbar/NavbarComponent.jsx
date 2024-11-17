@@ -39,14 +39,6 @@ const NavbarComponent = () => {
                         <div
                            className="absolute right-0 z-50 top-0 mt-16 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-700"
                         >
-                           <div className="px-4 py-3 border-b dark:border-gray-600">
-                              <p className="text-sm text-gray-900 dark:text-white">
-                                 User
-                              </p>
-                              <p className="text-sm font-medium text-gray-500 truncate dark:text-gray-300">
-                                 username
-                              </p>
-                           </div>
                            <ul className="py-1">
                               <li>
                                  <Link
