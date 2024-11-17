@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const useForm2 = (input) => {
+const useFormCon = (input) => {
   const [form, setForm] = useState(input);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "image") {
@@ -16,6 +17,7 @@ const useForm2 = (input) => {
       });
     }
   };
+
   return [form, setForm, handleChange];
 };
-export default useForm2;
+export default useFormCon;

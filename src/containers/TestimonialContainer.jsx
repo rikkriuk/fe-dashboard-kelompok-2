@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TableTestimonialComponent from "../components/Testimonial/TableTestimonialComponent";
 import FormTestimonialComponent from "../components/Testimonial/FormTestimonialComponent";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import useForm2 from "../hooks/useForm2";
+import useFormCon from "../hooks/useFormCon";
 import {
   getTestimonial,
   addTestimonial,
@@ -19,15 +19,19 @@ const TestimonialContainer = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+
   const [testimonial, setTestimonial] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const [refresh, setRefresh] = useState(false);
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [overlayImageUrl, setOverlayImageUrl] = useState(null);
 
   const isAdd = location.pathname.includes("/add");
   const isEdit = location.pathname.includes("/edit");
 
-  const [form, setForm, handleChange] = useForm2({
+  const [form, setForm, handleChange] = useFormCon({
     name: "",
     message: "",
     date: "",
@@ -38,6 +42,13 @@ const TestimonialContainer = () => {
   useEffect(() => {
     fetchData();
   }, [refresh]);
+
+  const toggleOverlay = (imageUrl) => {
+    if (imageUrl) {
+      setOverlayImageUrl(imageUrl);
+    }
+    setIsOverlayVisible(!isOverlayVisible);
+  };
 
   const handleRefresh = () => {
     setRefresh((prev) => !prev);
@@ -163,6 +174,10 @@ const TestimonialContainer = () => {
           testimonial={testimonial}
           navigationForm={navigationForm}
           handleDelete={handleDelete}
+          toggleOverlay={toggleOverlay}
+          isOverlayVisible={isOverlayVisible}
+          overlayImageUrl={overlayImageUrl}
+          setIsOverlayVisible={setIsOverlayVisible}
         />
       )}
 

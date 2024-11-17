@@ -141,6 +141,15 @@ const FormTestimonialComponent = ({
             >
               JPEG, JPG or PNG
             </p>
+            {form.imageUrl && (
+              <div className="mt-4">
+                <img
+                  src={form.imageUrl || form.image}
+                  alt="Testimonial Preview"
+                  className="max-w-full h-auto rounded"
+                />
+              </div>
+            )}
           </div>
 
           <button

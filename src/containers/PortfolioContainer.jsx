@@ -13,7 +13,7 @@ import {
   editPortfolio,
   deletePortofolio,
 } from "../utils/api";
-import useForm2 from "../hooks/useForm2";
+import useFormCon from "../hooks/useFormCon";
 
 const PortfolioContainer = () => {
   const { id } = useParams();
@@ -23,12 +23,15 @@ const PortfolioContainer = () => {
   const isAdd = location.pathname.includes("/add");
   const isEdit = location.pathname.includes("/edit");
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [dataPorto, setDataPorto] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
-  const [form, setForm, handleChange] = useForm2({
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [overlayImageUrl, setOverlayImageUrl] = useState(null);
+
+  const [form, setForm, handleChange] = useFormCon({
     content: "",
     date: "",
     title: "",
@@ -38,6 +41,13 @@ const PortfolioContainer = () => {
   useEffect(() => {
     fetchData();
   }, [refresh]);
+
+  const toggleOverlay = (imageUrl) => {
+    if (imageUrl) {
+      setOverlayImageUrl(imageUrl);
+    }
+    setIsOverlayVisible(!isOverlayVisible);
+  };
 
   const handleRefresh = () => {
     setRefresh((prev) => !prev);
@@ -162,6 +172,10 @@ const PortfolioContainer = () => {
           portfolio={dataPorto}
           navigationForm={navigationForm}
           handleDelete={handleDelete}
+          toggleOverlay={toggleOverlay}
+          isOverlayVisible={isOverlayVisible}
+          overlayImageUrl={overlayImageUrl}
+          setIsOverlayVisible={setIsOverlayVisible}
         />
       )}
 

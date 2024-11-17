@@ -8,11 +8,16 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import OverlayComponent from "../OverlayComponent";
 
 const TableTestimonialComponent = ({
   testimonial,
   navigationForm,
   handleDelete,
+  isOverlayVisible,
+  setIsOverlayVisible,
+  overlayImageUrl,
+  toggleOverlay,
 }) => {
   return (
     <div className="container mx-auto px-10 pt-10">
@@ -103,8 +108,13 @@ const TableTestimonialComponent = ({
                 <td className="px-6 py-4">{data.title}</td>
                 <td className="px-6 py-4">{data.date}</td>
                 <td className="px-6 py-4">{data.message} </td>
-                <td className="px-6 py-4">
-                  <img src={data.imageUrl} alt="" className="w-10 h-10" />
+                <td>
+                  <button
+                    onClick={() => toggleOverlay(data.imageUrl)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Show Image
+                  </button>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button
@@ -126,6 +136,12 @@ const TableTestimonialComponent = ({
             ))}
           </tbody>
         </table>
+        {isOverlayVisible && (
+          <OverlayComponent
+            imageUrl={overlayImageUrl}
+            onClose={() => setIsOverlayVisible(false)}
+          />
+        )}
         <nav
           className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
           aria-label="Table navigation"

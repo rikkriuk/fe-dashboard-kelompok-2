@@ -125,6 +125,15 @@ const FormPortfolioComponent = ({
               JPEG, JPG or PNG
             </p>
           </div>
+          {form.imageUrl && (
+            <div className="mt-4">
+              <img
+                src={form.imageUrl || form.image}
+                alt="Portofolio Preview"
+                className="max-w-full h-auto rounded"
+              />
+            </div>
+          )}
 
           <button
             type="submit"
