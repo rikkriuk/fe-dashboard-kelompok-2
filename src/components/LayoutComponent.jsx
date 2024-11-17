@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import NavbarComponent from "./NavbarComponent";
-import SidebarComponent from "./SidebarComponent";
+import NavbarComponent from "./Navbar/NavbarComponent";
+import SidebarComponent from "./Navbar/SidebarComponent";
 import { Outlet } from "react-router-dom";
 
 const LayoutComponent = () => {
