@@ -79,6 +79,14 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            {/* <Route
+              path="dashboard/about-us/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            /> */}
 
             {/* Teams route */}
             <Route
