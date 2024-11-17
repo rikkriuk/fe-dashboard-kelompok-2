@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/Authentication/ProtectedRoute";
 import ArticleContainer from "./containers/ArticleContainer";
 import ContactComponent from "./components/Contact/ContactComponent";
 import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailComponent";
+import TeamsContainer from "./containers/TeamsContainer";
 
 const App = () => {
   return (
@@ -32,6 +33,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* Testimonial route */}
             <Route
               path="dashboard/testimonial"
               element={
@@ -56,6 +59,34 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* Teams route */}
+            <Route
+              path="dashboard/teams"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/teams/add"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/teams/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Testimonial route */}
             <Route
               path="dashboard/portfolio"
               element={

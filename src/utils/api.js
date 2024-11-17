@@ -41,6 +41,12 @@ const editTestimonial = (id, data) =>
 const deleteTestimonial = (id) =>
   apiWithToken.delete(`/api/testimonials/${id}`);
 
+// teams
+const getTeamsData = () => api.get("/api/team");
+const postTeamsData = (data) => apiWithToken.post("/api/team", data);
+const putTeamsData = (data, id) => apiWithToken.put(`/api/team/${id}`, data);
+const deleteTeamsData = (id) => apiWithToken.delete(`/api/team/${id}`);
+
 // article
 const getArticleData = () => api.get("/api/article");
 const getArticleDataById = (slug) => api.get(`/api/article/${slug}`);
@@ -74,4 +80,8 @@ export {
   deleteArticleData,
   getContactData,
   getSubscribeEmail,
+  getTeamsData,
+  postTeamsData,
+  putTeamsData,
+  deleteTeamsData,
 };
