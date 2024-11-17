@@ -12,6 +12,7 @@ import ArticleContainer from "./containers/ArticleContainer";
 import ContactComponent from "./components/Contact/ContactComponent";
 import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailComponent";
 import TeamsContainer from "./containers/TeamsContainer";
+import WhatWeDoContainer from "./containers/WhatWeDoContainer";
 
 const App = () => {
   return (
@@ -82,6 +83,32 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* What we do route */}
+            <Route
+              path="dashboard/what-we-do"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/what-we-do/add"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/what-we-do/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
                 </ProtectedRoute>
               }
             />

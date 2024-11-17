@@ -41,6 +41,13 @@ const editTestimonial = (id, data) =>
 const deleteTestimonial = (id) =>
   apiWithToken.delete(`/api/testimonials/${id}`);
 
+// what-we-do
+const getWhatWeDoData = () => api.get("/api/what-we-do");
+const postWhatWeDoData = (data) => apiWithToken.post("/api/what-we-do", data);
+const putWhatWeDoData = (data, id) =>
+  apiWithToken.put(`/api/what-we-do/${id}`, data);
+const deleteWhatWeDoData = (id) => apiWithToken.delete(`/api/what-we-do/${id}`);
+
 // teams
 const getTeamsData = () => api.get("/api/team");
 const postTeamsData = (data) => apiWithToken.post("/api/team", data);
@@ -84,4 +91,8 @@ export {
   postTeamsData,
   putTeamsData,
   deleteTeamsData,
+  getWhatWeDoData,
+  postWhatWeDoData,
+  putWhatWeDoData,
+  deleteWhatWeDoData,
 };
