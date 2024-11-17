@@ -1,33 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaHome,
   FaAngleRight,
   FaSearch,
   FaPlus,
-  // FaPencilAlt,
+  FaPencilAlt,
 } from "react-icons/fa";
-import useList from "./UseList";
+import useList from "../hooks/useList";
 
 const AboutComponent = () => {
-  const { data } = useList(
-    "https://cms-api-t2-lumoshive-academy.vercel.app/api/about-us"
-  );
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const apiUrl = `${import.meta.env.VITE_API_URL}api/about-us`;
+  const { data } = useList(apiUrl);
   return (
     <div>
       <div className="container mx-auto px-52 pt-10">
         <nav className="flex mb-3" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li className="inline-flex items-center">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
               >
                 <FaHome className="mr-2" />
                 Home
-              </a>
+              </Link>
             </li>
 
             <li aria-current="page">
@@ -59,13 +56,13 @@ const AboutComponent = () => {
                   placeholder="Search"
                 />
               </div>
-              <a
+              <Link
                 type="button"
-                href="testimonial/add"
+                to="testimonial/add"
                 className="px-3 py-2 text-xs font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap inline-flex items-center"
               >
                 <FaPlus className="mr-2" /> Add Data
-              </a>
+              </Link>
             </div>
           </div>
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto">
@@ -87,15 +84,23 @@ const AboutComponent = () => {
             </thead>
             <tbody>
               {data ? (
-                <tr>
-                  <td>{data.title}</td>
-                  <td>{data.desc}</td>
-                  <td>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4">{data.title}</td>
+                  <td className="px-6 py-4">{data.desc}</td>
+                  <td className="px-6 py-4">
                     <img
                       src={data.imageUrl}
                       alt={data.title}
                       style={{ width: "100px", height: "auto" }}
                     />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a
+                      href="testimonial/edit/1"
+                      className="inline-flex items-center mx-3 font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
+                    >
+                      <FaPencilAlt />
+                    </a>
                   </td>
                 </tr>
               ) : (
@@ -106,7 +111,7 @@ const AboutComponent = () => {
             </tbody>
           </table>
           <nav
-            className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
+            className="flex items-center flex-colum flex-wrap md:flex-row justify-between pt-4"
             aria-label="Table navigation"
           >
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">

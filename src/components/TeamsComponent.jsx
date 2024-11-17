@@ -1,4 +1,5 @@
 import React from "react";
+import useList from "../hooks/useList";
 import {
   FaHome,
   FaAngleRight,
@@ -9,6 +10,8 @@ import {
 } from "react-icons/fa";
 
 const TeamsComponent = () => {
+  const apiUrl = `${import.meta.env.VITE_API_URL}api/team`;
+  const { data } = useList(apiUrl);
   return (
     <div>
       <div>
@@ -69,11 +72,11 @@ const TeamsComponent = () => {
                   <th scope="col" className="px-6 py-3">
                     No
                   </th>
-                  <th scope="col" className="px-6 py-3 max-w-xs">
-                    Title
-                  </th>
                   <th scope="col" className="px-6 py-3">
                     Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 max-w-xs">
+                    Title
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Image
@@ -84,26 +87,37 @@ const TeamsComponent = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td className="px-6 py-4">1</td>
-                  <td className="px-6 py-4">CEO Academy</td>
-                  <td className="px-6 py-4">Deni</td>
-                  <td className="px-6 py-4">Teams.png</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <a
-                      href="testimonial/edit/1"
-                      className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
-                    >
-                      <FaPencilAlt />
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
-                    >
-                      <FaTrashAlt />
-                    </a>
-                  </td>
-                </tr>
+                {data.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  >
+                    <td className="px-6 py-4">{index + 1}</td>
+                    <td className="px-6 py-4">{item.name}</td>
+                    <td className="px-6 py-4">{item.title}</td>
+                    <td className="px-6 py-4">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        style={{ width: "100px", height: "auto" }}
+                      />
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <a
+                        href="testimonial/edit/1"
+                        className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
+                      >
+                        <FaPencilAlt />
+                      </a>
+                      <a
+                        href="#"
+                        className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
+                      >
+                        <FaTrashAlt />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <nav

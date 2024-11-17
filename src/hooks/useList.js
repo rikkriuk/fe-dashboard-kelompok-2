@@ -6,6 +6,7 @@ const UseList = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // custom hook for get data from api
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);

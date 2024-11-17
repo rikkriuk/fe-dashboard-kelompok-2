@@ -7,8 +7,11 @@ import {
   FaTrashAlt,
   FaPencilAlt,
 } from "react-icons/fa";
+import useList from "../hooks/useList";
 
 const WhatWeDo = () => {
+  const apiUrl = `${import.meta.env.VITE_API_URL}api/what-we-do`;
+  const { data } = useList(apiUrl);
   return (
     <div>
       <div className="container mx-auto px-52 pt-10">
@@ -72,7 +75,7 @@ const WhatWeDo = () => {
                   Title
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Message
+                  Desc
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Image
@@ -83,26 +86,37 @@ const WhatWeDo = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td className="px-6 py-4">1</td>
-                <td className="px-6 py-4">CEO Academy</td>
-                <td className="px-6 py-4">pelayanan yang sangat mantap</td>
-                <td className="px-6 py-4">portofolio.png</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <a
-                    href="testimonial/edit/1"
-                    className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
-                  >
-                    <FaPencilAlt />
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
-                  >
-                    <FaTrashAlt />
-                  </a>
-                </td>
-              </tr>
+              {data.map((item, index) => (
+                <tr
+                  key={index}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                >
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <td className="px-6 py-4">{item.title}</td>
+                  <td className="px-6 py-4">{item.desc}</td>
+                  <td className="px-6 py-4">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      style={{ width: "100px", height: "auto" }}
+                    />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a
+                      href="testimonial/edit/1"
+                      className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
+                    >
+                      <FaPencilAlt />
+                    </a>
+                    <a
+                      href="#"
+                      className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
+                    >
+                      <FaTrashAlt />
+                    </a>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <nav
