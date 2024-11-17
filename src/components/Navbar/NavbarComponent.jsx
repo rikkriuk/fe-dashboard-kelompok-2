@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.svg";
-import userImage from "../assets/user-image.jpg";
+import logo from "../../assets/logo.svg";
+import userImage from "../../assets/user-image.jpg";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const NavbarComponent = () => {
    const { logout } = useAuth();
@@ -13,7 +13,7 @@ const NavbarComponent = () => {
    };
 
    return (
-      <nav className="w-full px-52 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="w-full px-10 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
          <div className="px-3 py-3 lg:px-5 lg:pl-3 flex justify-between w-full">
 
             <div className="flex items-center justify-between">

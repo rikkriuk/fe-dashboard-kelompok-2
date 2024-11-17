@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaHome,
-  FaPencilAlt,
-  FaTrashAlt,
   FaAngleRight,
-  FaPlus,
   FaSearch,
 } from "react-icons/fa";
+import { getContactData } from "../../utils/api";
 
-const TablePortfolioComponent = ({ portfolio }) => {
+const ContactComponent = () => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    getContactData()
+    .then((response) => {
+      setData(response.data.data);
+    })
+  }, []);
+
   return (
-    <div className="container mx-auto px-52 pt-10">
+    <div className="container mx-auto px-10 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
@@ -27,7 +34,7 @@ const TablePortfolioComponent = ({ portfolio }) => {
             <div className="flex items-center">
               <FaAngleRight />
               <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                Portfolio
+                Subscribe
               </span>
             </div>
           </li>
@@ -37,7 +44,7 @@ const TablePortfolioComponent = ({ portfolio }) => {
       <div className="relative overflow-x-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center flex-column flex-wrap md:flex-row justify-between mb-4">
           <h5 className="text-xl font-bold text-gray-600 dark:text-white">
-            Portfolio List
+            Subscribe Email
           </h5>
 
           <div className="flex items-center space-x-4">
@@ -52,13 +59,6 @@ const TablePortfolioComponent = ({ portfolio }) => {
                 placeholder="Search"
               />
             </div>
-            <a
-              type="button"
-              href="portfolio/add"
-              className="px-3 py-2 text-xs font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap inline-flex items-center"
-            >
-              <FaPlus className="mr-2" /> Add Data
-            </a>
           </div>
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 overflow-x-auto">
@@ -68,44 +68,33 @@ const TablePortfolioComponent = ({ portfolio }) => {
                 No
               </th>
               <th scope="col" className="px-6 py-3">
-                Title
+                Name
               </th>
-              <th scope="col" className="px-6 py-3 max-w-xs">
-                Content
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Phone
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Message
               </th>
               <th scope="col" className="px-6 py-3">
                 Date
               </th>
-              <th scope="col" className="px-6 py-3">
-                Image
-              </th>
-              <th scope="col" className="px-6 py-3">
-                action
-              </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">{portfolio.title}</td>
-              <td className="px-6 py-4">{portfolio.content}</td>
-              <td className="px-6 py-4">{portfolio.date}</td>
-              <td className="px-6 py-4">{portfolio.image}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <a
-                  href="portfolio/edit/1"
-                  className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
-                >
-                  <FaPencilAlt />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
-                >
-                  <FaTrashAlt />
-                </a>
-              </td>
-            </tr>
+            {data?.map((item, index) => (
+              <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td className="px-6 py-4">{index + 1}</td>
+                <td className="px-6 py-4">{item.name}</td>
+                <td className="px-6 py-4">{item.email}</td>
+                <td className="px-6 py-4">{item.phone}</td>
+                <td className="px-6 py-4">{item.message}</td>
+                <td className="px-6 py-4">{item.date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <nav
@@ -163,4 +152,4 @@ const TablePortfolioComponent = ({ portfolio }) => {
   );
 };
 
-export default TablePortfolioComponent;
+export default ContactComponent;
