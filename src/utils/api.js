@@ -41,6 +41,12 @@ const editTestimonial = (id, data) =>
 const deleteTestimonial = (id) =>
   apiWithToken.delete(`/api/testimonials/${id}`);
 
+// about-us
+const getAboutUsData = () => api.get("/api/about-us");
+const postAboutUsData = (data) => apiWithToken.post("/api/about-us", data);
+const putAboutUsData = (id, data) =>
+  apiWithToken.put(`/api/about-us/${id}`, data);
+
 // what-we-do
 const getWhatWeDoData = () => api.get("/api/what-we-do");
 const postWhatWeDoData = (data) => apiWithToken.post("/api/what-we-do", data);
@@ -95,4 +101,7 @@ export {
   postWhatWeDoData,
   putWhatWeDoData,
   deleteWhatWeDoData,
+  getAboutUsData,
+  postAboutUsData,
+  putAboutUsData,
 };

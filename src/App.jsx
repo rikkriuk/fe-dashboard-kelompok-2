@@ -13,6 +13,7 @@ import ContactComponent from "./components/Contact/ContactComponent";
 import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailComponent";
 import TeamsContainer from "./containers/TeamsContainer";
 import WhatWeDoContainer from "./containers/WhatWeDoContainer";
+import AboutUsContainer from "./containers/AboutUsContainer";
 
 const App = () => {
   return (
@@ -60,6 +61,32 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* About us route */}
+            <Route
+              path="dashboard/about-us"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/about-us/add"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route
+              path="dashboard/about-us/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            /> */}
 
             {/* Teams route */}
             <Route
