@@ -8,16 +8,12 @@ const FormExperticeComponent = ({ isEdit }) => {
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <Link
-              to="/"
-            >
-            <button
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
-            >
-              <FaHome className="mr-2" />
-              Home
-            </button>
-            </Link>  
+            <Link to="/">
+              <button className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                <FaHome className="mr-2" />
+                Home
+              </button>
+            </Link>
           </li>
 
           <li className="inline-flex items-center">
@@ -26,14 +22,14 @@ const FormExperticeComponent = ({ isEdit }) => {
               className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
             >
               <FaAngleRight />
-              Portfolio
+              Expertice
             </a>
           </li>
           <li aria-current="page">
             <div className="flex items-center">
               <FaAngleRight />
               <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                {isEdit ? "Edit Portfolio" : "Add Portfolio"}
+                {isEdit ? "Edit Expertice" : "Add Expertice`"}
               </span>
             </div>
           </li>
@@ -43,7 +39,7 @@ const FormExperticeComponent = ({ isEdit }) => {
       <div className="relative overflow-x-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center flex-column flex-wrap md:flex-row mb-4">
           <h5 className="text-xl font-bold text-gray-600 dark:text-white">
-            {isEdit ? "Edit Portfolio" : "Add Portfolio"}
+            {isEdit ? "Edit Expertice" : "Add Expertice"}
           </h5>
         </div>
 
@@ -59,24 +55,9 @@ const FormExperticeComponent = ({ isEdit }) => {
               type="title"
               id="title"
               name="title"
+            //   value={}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="title portfolio"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="date"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Date
-            </label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="date portfolio"
+              placeholder="title Expertice"
               required
             />
           </div>
@@ -85,7 +66,7 @@ const FormExperticeComponent = ({ isEdit }) => {
               htmlFor="content"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Content
+              Description
             </label>
             <textarea
               id="content"
@@ -109,13 +90,13 @@ const FormExperticeComponent = ({ isEdit }) => {
               id="imageUrl"
               name="imageUrl"
               type="file"
-              accept=".jpg, .jpeg, .png"
+              accept=".png, .svg"
             />
             <p
               className="mt-1 text-sm text-gray-500 dark:text-gray-300"
               id="imageUrl_help"
             >
-              JPEG, JPG or PNG
+              PNG, SVG
             </p>
           </div>
 
@@ -123,7 +104,7 @@ const FormExperticeComponent = ({ isEdit }) => {
             type="submit"
             className="text-white  bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            {isEdit ? "Edit Portfolio" : "Add Portfolio"}
+            {isEdit ? "Edit Expertice" : "Add Expertice"}
           </button>
         </form>
       </div>
