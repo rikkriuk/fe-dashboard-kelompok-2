@@ -8,6 +8,8 @@ import LoginComponent from "./components/Authentication/LoginComponent";
 import RegisterComponent from "./components/Authentication/RegisterComponent";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute";
+import ExperticeContainer from "./containers/ExperticeContainer";
+import FormExperticeComponent from "./components/Expertice/FormExperticeComponent";
 
 const App = () => {
   return (
@@ -74,6 +76,22 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <PortfolioContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise/add"
+              element={
+                <ProtectedRoute>
+                  <FormExperticeComponent />
                 </ProtectedRoute>
               }
             />
