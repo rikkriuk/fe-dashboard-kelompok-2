@@ -49,6 +49,12 @@ const putArticleData = (data, id) =>
   apiWithToken.put(`/api/article/${id}`, data);
 const deleteArticleData = (id) => apiWithToken.delete(`/api/article/${id}`);
 
+// contact
+const getContactData = () => apiWithToken("/api/contact");
+
+// subscribe email
+const getSubscribeEmail = () => apiWithToken("/api/subscribe");
+
 export {
   userRegister,
   userLogin,
@@ -66,4 +72,6 @@ export {
   getArticleDataById,
   putArticleData,
   deleteArticleData,
+  getContactData,
+  getSubscribeEmail,
 };

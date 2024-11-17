@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.svg";
-import userImage from "../assets/user-image.jpg";
+import logo from "../../assets/logo.svg";
+import userImage from "../../assets/user-image.jpg";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const NavbarComponent = () => {
    const { logout } = useAuth();

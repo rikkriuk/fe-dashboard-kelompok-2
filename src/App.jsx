@@ -9,8 +9,8 @@ import RegisterComponent from "./components/Authentication/RegisterComponent";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute";
 import ArticleContainer from "./containers/ArticleContainer";
-import ContactComponent from "./components/ContactComponent";
-import SubscribeEmailComponent from "./components/SubscribeEmailComponent";
+import ContactComponent from "./components/Contact/ContactComponent";
+import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailComponent";
 
 const App = () => {
   return (
