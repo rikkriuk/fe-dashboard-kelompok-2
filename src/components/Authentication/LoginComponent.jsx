@@ -17,7 +17,6 @@ const LoginComponent = () => {
   const [errors, setErrors] = useState({});
   const [passwordType, setPasswordType] = useState("password");
 
-
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard");
@@ -37,7 +36,7 @@ const LoginComponent = () => {
     const newErrors = {};
     if (!form.username) newErrors.username = "Username is required";
     if (!form.password) newErrors.password = "Password is required";
-    
+
     setErrors(newErrors);
 
     // If no errors, proceed with login
@@ -78,7 +77,9 @@ const LoginComponent = () => {
               onChange={handleChange}
               value={form.username}
               placeholder="Username"
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline ${errors.username ? 'border-red-500' : ''}`}
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline ${
+                errors.username ? "border-red-500" : ""
+              }`}
             />
             {errors.username && (
               <p className="text-red-500 text-xs mt-1">{errors.username}</p>
@@ -96,7 +97,9 @@ const LoginComponent = () => {
                 placeholder="Password"
                 onChange={handleChange}
                 value={form.password}
-                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline ${
+                  errors.password ? "border-red-500" : ""
+                }`}
               />
               <button
                 type="button"
@@ -123,7 +126,7 @@ const LoginComponent = () => {
           </div>
           <div className="text-center text-secondary">
             <p>
-              Don`t have an account? {" "}
+              Don`t have an account?{" "}
               <Link to="/register">
                 <span className="text-primary">Register</span>
               </Link>

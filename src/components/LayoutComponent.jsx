@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import NavbarComponent from "./NavbarComponent";
-import SidebarComponent from "./SidebarComponent";
+import NavbarComponent from "./Navbar/NavbarComponent";
+import SidebarComponent from "./Navbar/SidebarComponent";
 import { Outlet } from "react-router-dom";
 
 const LayoutComponent = () => {
@@ -10,8 +10,11 @@ const LayoutComponent = () => {
 
   return (
     <div className="flex border">
-      <SidebarComponent isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <main className="transition-all duration-300 w-full" >
+      <SidebarComponent
+        isSidebarOpen={isSidebarOpen}
+        toggleSidebar={toggleSidebar}
+      />
+      <main className="transition-all duration-300 w-full">
         <NavbarComponent />
         <Outlet />
       </main>

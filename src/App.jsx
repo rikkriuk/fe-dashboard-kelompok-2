@@ -8,8 +8,12 @@ import LoginComponent from "./components/Authentication/LoginComponent";
 import RegisterComponent from "./components/Authentication/RegisterComponent";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute";
-import ExperticeContainer from "./containers/ExperticeContainer";
-import FormExperticeComponent from "./components/Expertice/FormExperticeComponent";
+import ArticleContainer from "./containers/ArticleContainer";
+import ContactComponent from "./components/Contact/ContactComponent";
+import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailComponent";
+import TeamsContainer from "./containers/TeamsContainer";
+import WhatWeDoContainer from "./containers/WhatWeDoContainer";
+import AboutUsContainer from "./containers/AboutUsContainer";
 
 const App = () => {
   return (
@@ -31,6 +35,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* Testimonial route */}
             <Route
               path="dashboard/testimonial"
               element={
@@ -55,6 +61,86 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* About us route */}
+            <Route
+              path="dashboard/about-us"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/about-us/add"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route
+              path="dashboard/about-us/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <AboutUsContainer />
+                </ProtectedRoute>
+              }
+            /> */}
+
+            {/* Teams route */}
+            <Route
+              path="dashboard/teams"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/teams/add"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/teams/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <TeamsContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* What we do route */}
+            <Route
+              path="dashboard/what-we-do"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/what-we-do/add"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/what-we-do/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <WhatWeDoContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Testimonial route */}
             <Route
               path="dashboard/portfolio"
               element={
@@ -79,19 +165,51 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+
+            {/* Article route */}
             <Route
-              path="dashboard/expertise"
+              path="dashboard/article"
               element={
                 <ProtectedRoute>
-                  <ExperticeContainer />
+                  <ArticleContainer />
                 </ProtectedRoute>
               }
             />
+
             <Route
-              path="dashboard/expertise/add"
+              path="dashboard/article/add"
               element={
                 <ProtectedRoute>
-                  <FormExperticeComponent />
+                  <ArticleContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="dashboard/article/edit/:id/:slug"
+              element={
+                <ProtectedRoute>
+                  <ArticleContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Contact route */}
+            <Route
+              path="dashboard/contact"
+              element={
+                <ProtectedRoute>
+                  <ContactComponent />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Subscribe Email route */}
+            <Route
+              path="dashboard/subscribe-email"
+              element={
+                <ProtectedRoute>
+                  <SubscribeEmailComponent />
                 </ProtectedRoute>
               }
             />
@@ -103,4 +221,3 @@ const App = () => {
 };
 
 export default App;
-
