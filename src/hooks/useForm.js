@@ -10,7 +10,14 @@ const useForm = (initialValue) => {
     });
   };
 
-  return [form, handleChange];
+  const handleFileChange = (e) => {
+    setForm({
+      ...form,
+      image: e.target.files[0],
+    });
+  };
+
+  return [form, handleChange, handleFileChange, setForm];
 };
 
 export default useForm;

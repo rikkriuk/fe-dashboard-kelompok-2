@@ -46,7 +46,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
         <form>
           <div className="mb-6">
             <label
-              for="name"
+              htmlFor="name"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Name
@@ -62,7 +62,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
           </div>
           <div className="mb-6">
             <label
-              for="title"
+              htmlFor="title"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Title
@@ -78,7 +78,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
           </div>
           <div className="mb-6">
             <label
-              for="date"
+              htmlFor="date"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Date
@@ -94,7 +94,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
           </div>
           <div className="mb-6">
             <label
-              for="message"
+              htmlFor="message"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Message
@@ -111,7 +111,7 @@ const FormTestimonialComponent = ({ isEdit }) => {
           <div className="mb-6">
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              for="imageUrl"
+              htmlFor="imageUrl"
             >
               Upload Image
             </label>

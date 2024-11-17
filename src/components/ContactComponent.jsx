@@ -3,7 +3,7 @@ import { FaHome, FaAngleRight, FaSearch } from "react-icons/fa";
 
 const ContactComponent = () => {
   return (
-    <section className="bg-white p-6 rounded-lg shadow-md mx-4 sm:mx-10 md:mx-20 lg:mx-52">
+    <section className="bg-white pt-10 p-6 rounded-lg shadow-md mx-4 sm:mx-10 md:mx-20 lg:mx-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   FaHome,
-  FaEye,
   FaPencilAlt,
   FaTrashAlt,
   FaAngleRight,

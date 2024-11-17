@@ -8,6 +8,9 @@ import LoginComponent from "./components/Authentication/LoginComponent";
 import RegisterComponent from "./components/Authentication/RegisterComponent";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute";
+import ArticleContainer from "./containers/ArticleContainer";
+import ContactComponent from "./components/ContactComponent";
+import SubscribeEmailComponent from "./components/SubscribeEmailComponent";
 
 const App = () => {
   return (
@@ -74,6 +77,54 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <PortfolioContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Article route */}
+            <Route
+              path="dashboard/article"
+              element={
+                <ProtectedRoute>
+                  <ArticleContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="dashboard/article/add"
+              element={
+                <ProtectedRoute>
+                  <ArticleContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="dashboard/article/edit/:id/:slug"
+              element={
+                <ProtectedRoute>
+                  <ArticleContainer />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Contact route */}
+            <Route
+              path="dashboard/contact"
+              element={
+                <ProtectedRoute>
+                  <ContactComponent />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Subscribe Email route */}
+            <Route
+              path="dashboard/subscribe-email"
+              element={
+                <ProtectedRoute>
+                  <SubscribeEmailComponent />
                 </ProtectedRoute>
               }
             />
