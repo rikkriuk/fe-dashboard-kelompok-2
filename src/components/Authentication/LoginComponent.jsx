@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 92d722c (fixed conflict)
 import React, { useEffect, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import logo from "../../assets/companylogo.png";
@@ -136,6 +139,7 @@ const LoginComponent = () => {
   );
 };
 
+<<<<<<< HEAD
 =======
 import React, { useEffect, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
@@ -275,4 +279,6 @@ const LoginComponent = () => {
 };
 
 >>>>>>> 1b1f233 (feat: add authentication, validation, input custom hook, custom api and protected routes)
+=======
+>>>>>>> 92d722c (fixed conflict)
 export default LoginComponent;

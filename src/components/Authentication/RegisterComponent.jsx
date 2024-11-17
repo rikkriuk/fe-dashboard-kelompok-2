@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 92d722c (fixed conflict)
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/companylogo.png";
@@ -168,6 +171,7 @@ const RegisterComponent = () => {
 };
 
 export default RegisterComponent;
+<<<<<<< HEAD
 =======
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -339,3 +343,5 @@ const RegisterComponent = () => {
 
 export default RegisterComponent;
 >>>>>>> 1b1f233 (feat: add authentication, validation, input custom hook, custom api and protected routes)
+=======
+>>>>>>> 92d722c (fixed conflict)

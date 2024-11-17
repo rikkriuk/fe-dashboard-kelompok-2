@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 92d722c (fixed conflict)
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -40,6 +43,7 @@ const AuthProvider = ({ children }) => {
 };
 
 export { useAuth, AuthProvider };
+<<<<<<< HEAD
 =======
 import React, { createContext, useState, useContext, useEffect } from "react";
 
@@ -80,3 +84,5 @@ const AuthProvider = ({ children }) => {
 
 export { useAuth, AuthProvider };
 >>>>>>> 1b1f233 (feat: add authentication, validation, input custom hook, custom api and protected routes)
+=======
+>>>>>>> 92d722c (fixed conflict)
