@@ -68,6 +68,13 @@ const putArticleData = (data, id) =>
   apiWithToken.put(`/api/article/${id}`, data);
 const deleteArticleData = (id) => apiWithToken.delete(`/api/article/${id}`);
 
+// expertice
+const getExperticeData = () => api.get("/api/expertise");
+const postExperticeData = (data) => apiWithToken.post("/api/expertise", data);
+const putExperticeData = (data, id) =>
+  apiWithToken.put(`/api/expertice/${id}`, data);
+const deleteExperticeData = (id) => apiWithToken.delete(`/api/expertise/${id}`);
+
 // contact
 const getContactData = () => apiWithToken("/api/contact");
 
@@ -104,4 +111,8 @@ export {
   getAboutUsData,
   postAboutUsData,
   putAboutUsData,
+  getExperticeData,
+  postExperticeData,
+  putExperticeData,
+  deleteExperticeData,
 };

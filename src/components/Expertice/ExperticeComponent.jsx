@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ExpeticeComponent = ({expertice}) => {
+const ExpeticeComponent = ({expertice, handleDelete, navigationForm}) => {
   return (
     <div className="container mx-auto px-10 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
@@ -53,9 +53,10 @@ const ExpeticeComponent = ({expertice}) => {
                 placeholder="Search"
               />
             </div>
-            <Link to="/expertice/add">
+            <Link to="/dashboard/expertise/add">
               <button
                 type="button"
+                onClick={() => navigationForm("add","")}
                 className="px-3 py-2 text-xs font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 whitespace-nowrap inline-flex items-center"
               >
                 <FaPlus className="mr-2" /> Add Data
@@ -93,16 +94,18 @@ const ExpeticeComponent = ({expertice}) => {
                   <img src={item.icon} className="w-20 h-20" alt={item.title} />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <Link to={`/expertice/edit/${item.id}`}>
+                  <Link to={`/dashboard/expertise/edit/${item.id}`}>
                     <button
                       className="inline-flex items-center font-medium text-primary dark:text-blue-500 me-3 hover:text-red-700 dark:hover:text-blue-400"
+                      onClick={() => navigationForm("edit", item)}
                     >
                       <FaPencilAlt />
                     </button>
                   </Link>
-                  <Link to={`/expertice/delete/${item.id}`}>
+                  <Link to={`/dashboard/expertise/delete/${item.id}`}>
                     <button
                       className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
+                      onClick={() => handleDelete(item.id)}
                     >
                       <FaTrashAlt />
                     </button>
