@@ -14,6 +14,7 @@ import SubscribeEmailComponent from "./components/SubscribeEmail/SubscribeEmailC
 import TeamsContainer from "./containers/TeamsContainer";
 import WhatWeDoContainer from "./containers/WhatWeDoContainer";
 import AboutUsContainer from "./containers/AboutUsContainer";
+import ExperticeContainer from "./containers/ExperticeContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 
 const App = () => {
@@ -211,6 +212,31 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <SubscribeEmailComponent />
+                </ProtectedRoute>
+              }
+            />
+            {/* Expertice route */}
+            <Route
+              path="dashboard/expertise"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise/add"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer/>
                 </ProtectedRoute>
               }
             />
