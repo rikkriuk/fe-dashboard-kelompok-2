@@ -15,7 +15,6 @@ import TeamsContainer from "./containers/TeamsContainer";
 import WhatWeDoContainer from "./containers/WhatWeDoContainer";
 import AboutUsContainer from "./containers/AboutUsContainer";
 import ExperticeContainer from "./containers/ExperticeContainer";
-import FormExperticeComponent from "./components/Expertice/FormExperticeComponent";
 
 const App = () => {
   return (
