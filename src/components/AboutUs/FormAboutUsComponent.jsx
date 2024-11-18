@@ -10,7 +10,7 @@ const FormAboutUsComponent = ({ isEdit }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [form, handleChange, handleFileChange, setForm] = useForm({
+  const {form, handleChange, handleFileChange, setForm} = useForm({
     title: "",
     desc: "",
     image: null,

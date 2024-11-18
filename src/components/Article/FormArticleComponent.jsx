@@ -12,7 +12,7 @@ const FormArticleComponent = ({ isEdit }) => {
   const { id, slug } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [form, handleChange, handleFileChange, setForm] = useForm({
+  const {form, handleChange, handleFileChange, setForm} = useForm({
     title: "",
     content: "",
     meta_title: "",
