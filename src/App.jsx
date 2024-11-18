@@ -15,6 +15,7 @@ import TeamsContainer from "./containers/TeamsContainer";
 import WhatWeDoContainer from "./containers/WhatWeDoContainer";
 import AboutUsContainer from "./containers/AboutUsContainer";
 import ExperticeContainer from "./containers/ExperticeContainer";
+import FormExperticeComponent from "./components/Expertice/FormExperticeComponent";
 
 const App = () => {
   return (
@@ -217,6 +218,22 @@ const App = () => {
             {/* Expertice route */}
             <Route
               path="dashboard/expertise"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise/add"
+              element={
+                <ProtectedRoute>
+                  <ExperticeContainer/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/expertise/edit/:id"
               element={
                 <ProtectedRoute>
                   <ExperticeContainer/>

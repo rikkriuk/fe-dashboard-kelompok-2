@@ -1,110 +1,34 @@
 import React from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import useForm from "../../hooks/useForm";
-import { postExperticeData, getExperticeData, putExperticeData } from "../../utils/api";
-import { showErrorAlert, showSuccessAlert } from "../../utils/alert";
-
-const FormExperticeComponent = ({ isEdit }) => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [form, handleChange, handlefile, setForm] = useForm({
-    title: "",
-    desc: "",
-    icon: null,
-  });
-
-  const handleFileChange = (e) => {
-    setForm({
-      ...form,
-      icon: e.target.files[0],
-    });
-  };
-
-  const fetchData = async () => {
-    if (isEdit) {
-      try {
-        const response = await getExperticeData(id);
-        const data = response.data.data;
-
-        const editData = data.find((item) => item.id === id);
-        if (editData) {
-          setForm({
-            title: editData.title,
-            desc: editData.desc,
-            icon: editData.icon,
-          });
-        } else {
-          navigate("/dashboard/expertice");
-        }
-      } catch (error) {
-        showErrorAlert("Error", "Id is not found");
-        console.error("error", error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!form.icon) {
-      showErrorAlert("Error", "Please upload an image");
-      return;
-    }
-  
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-  
-    try {
-      if (isEdit) {
-        await putExperticeData(formData, id);
-        showSuccessAlert("Success", "Expertice updated successfully");
-        navigate("/dashboard/expertice");
-      } else {
-        await postExperticeData(formData);
-        showSuccessAlert("Success", "Expertice created successfully");
-        navigate("/dashboard/expertice");
-      }
-    } catch (error) {
-      console.error(error);
-      showErrorAlert("Error", "Failed to submit the expertice!");
-    }
-  };
-  
-
+const FormExperticeComponent = ({
+  isEdit,
+  handleChange,
+  handleSubmit,
+  handleFileChange,
+  form,
+}) => {
   return (
     <div className="container mx-auto px-52 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <Link
-              to="/"
-            >
-            <button
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
-            >
-              <FaHome className="mr-2" />
-              Home
-            </button>
-            </Link>  
+            <Link to="/">
+              <button className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                <FaHome className="mr-2" />
+                Home
+              </button>
+            </Link>
           </li>
 
           <li className="inline-flex items-center">
-            <a
-              href="#"
-              className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            <Link
+              to="/dashboard/expertise"
+              className="inline-flex items-center"
             >
               <FaAngleRight />
               Expertice
-            </a>
+            </Link>
           </li>
           <li aria-current="page">
             <div className="flex items-center">
@@ -143,7 +67,7 @@ const FormExperticeComponent = ({ isEdit }) => {
               required
             />
           </div>
-          
+
           <div className="mb-6">
             <label
               htmlFor="desc"
