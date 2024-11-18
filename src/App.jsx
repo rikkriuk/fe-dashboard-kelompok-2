@@ -15,7 +15,7 @@ import TeamsContainer from "./containers/TeamsContainer";
 import WhatWeDoContainer from "./containers/WhatWeDoContainer";
 import AboutUsContainer from "./containers/AboutUsContainer";
 import ExperticeContainer from "./containers/ExperticeContainer";
-
+import DashboardContainer from "./containers/DashboardContainer";
 
 const App = () => {
   return (
@@ -33,7 +33,7 @@ const App = () => {
               path="dashboard"
               element={
                 <ProtectedRoute>
-                  <h1>Dashboard</h1>
+                  <DashboardContainer />
                 </ProtectedRoute>
               }
             />
