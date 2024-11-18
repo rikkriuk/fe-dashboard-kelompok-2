@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
 import userImage from "../../assets/user-image.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const NavbarComponent = () => {
    const { logout } = useAuth();
+   const navigate = useNavigate();
    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
    const toggleDropdown = () => {
       setIsDropdownOpen((prev) => !prev);
    };
+
+   const handleLogout = () => {
+      logout();
+      navigate("/");
+   }
 
    return (
       <nav className="w-full px-10 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -39,14 +45,6 @@ const NavbarComponent = () => {
                         <div
                            className="absolute right-0 z-50 top-0 mt-16 w-48 bg-white rounded-lg shadow-lg dark:bg-gray-700"
                         >
-                           <div className="px-4 py-3 border-b dark:border-gray-600">
-                              <p className="text-sm text-gray-900 dark:text-white">
-                                 User
-                              </p>
-                              <p className="text-sm font-medium text-gray-500 truncate dark:text-gray-300">
-                                 username
-                              </p>
-                           </div>
                            <ul className="py-1">
                               <li>
                                  <Link
@@ -58,7 +56,7 @@ const NavbarComponent = () => {
                               </li>
                               <li>
                                  <button
-                                    onClick={logout}
+                                    onClick={handleLogout}
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                  >
                                     Sign out

@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { postTeamsData, getTeamsData, putTeamsData } from "../../utils/api";
 import { showErrorAlert, showSuccessAlert } from "../../utils/alert";
+import LoadingComponent from "../LoadingComponent";
 
 const FormTeamsComponent = ({ isEdit }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, handleChange, handleFileChange, setForm] = useForm({
+  const [loading, setLoading] = useState(false);
+  const {form, handleChange, handleFileChange, setForm} = useForm({
     title: "",
     name: "",
     image: null,
@@ -16,8 +18,9 @@ const FormTeamsComponent = ({ isEdit }) => {
 
   useEffect(() => {
       if (isEdit) {
-         getTeamsData(id)
-         .then((response) => {
+        setLoading(true);
+        getTeamsData(id)
+        .then((response) => {
             const data = response.data.data;
 
             const editData = data.find((item) => item.id === id)
@@ -33,6 +36,8 @@ const FormTeamsComponent = ({ isEdit }) => {
          }).catch((error) => {
             showErrorAlert("Error", "Id is not found");
             console.err("error", error);
+         }).finally(() => {
+            setLoading(false);
          })
       }
    }, [])
@@ -45,6 +50,7 @@ const FormTeamsComponent = ({ isEdit }) => {
       return;
     }
 
+    setLoading(true);
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => {
       formData.append(key, value);
@@ -65,8 +71,12 @@ const FormTeamsComponent = ({ isEdit }) => {
     } catch (error) {
       console.error(error);
       showErrorAlert("Error", "Failed to submit the team!");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <LoadingComponent />;
 
   return (
     <div className="container mx-auto px-10 pt-10">
