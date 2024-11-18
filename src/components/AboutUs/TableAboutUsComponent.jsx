@@ -4,17 +4,18 @@ import {
   FaPencilAlt,
   FaAngleRight,
   FaPlus,
-  FaSearch,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getAboutUsData } from "../../utils/api"
 import { showErrorAlert } from "../../utils/alert";
 import OverlayComponent from "../OverlayComponent";
+import LoadingComponent from "../LoadingComponent";
 
 const TableAboutUsComponent = () => {
    const [isOverlayVisible, setIsOverlayVisible] = useState(false);
    const [overlayImageUrl, setOverlayImageUrl] = useState(null);
    const [data, setData] = useState({});
+   const [loading, setLoading] = useState(true);
 
    const toggleOverlay = (imageUrl) => {
       if (imageUrl) {
@@ -24,13 +25,18 @@ const TableAboutUsComponent = () => {
     };
 
    useEffect(() => {
+      setLoading(true);
       getAboutUsData().then((res) => {
          setData(res.data.data);
       }).catch((error) => {
          showErrorAlert("Error", "Failed to fetch data");
          console.log(error)
+      }).finally(() => {
+         setLoading(false);
       })
    }, []);
+
+   if (loading) return <LoadingComponent />;
 
    return (
       <div className="container mx-auto px-10 pt-10">
@@ -64,17 +70,6 @@ const TableAboutUsComponent = () => {
             </h5>
 
             <div className="flex items-center space-x-4">
-               <div className="relative">
-               <div className="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
-                  <FaSearch />
-               </div>
-               <input
-                  type="text"
-                  id="table-search"
-                  className="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-50 h-8 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search"
-               />
-               </div>
                <Link
                type="button"
                to={"/dashboard/about-us/add"}
@@ -106,7 +101,7 @@ const TableAboutUsComponent = () => {
             </thead>
 
             <tbody>       
-            {data && (
+            {Object.keys(data).length !== 0 && (
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td className="px-6 py-4">1</td>
                 <td className="px-6 py-4">{data.title}</td>
@@ -135,56 +130,6 @@ const TableAboutUsComponent = () => {
          {isOverlayVisible && (
             <OverlayComponent imageUrl={overlayImageUrl} onClose={() => setIsOverlayVisible(false)} />
          )}
-         <nav
-            className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
-            aria-label="Table navigation"
-         >
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
-               Showing{" "}
-               <span className="font-semibold text-gray-900 dark:text-white">
-               1-10
-               </span>{" "}
-               of{" "}
-               <span className="font-semibold text-gray-900 dark:text-white">
-               1000
-               </span>
-            </span>
-            <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-               <li>
-               <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-               >
-                  Previous
-               </a>
-               </li>
-               <li>
-               <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-               >
-                  1
-               </a>
-               </li>
-               <li>
-               <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-               >
-                  2
-               </a>
-               </li>
-
-               <li>
-               <a
-                  href="#"
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-               >
-                  Next
-               </a>
-               </li>
-            </ul>
-         </nav>
          </div>
       </div>
    );

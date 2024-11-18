@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -6,10 +6,12 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import useForm from "../../hooks/useForm";
 import { postArticleData, getArticleDataById, putArticleData } from "../../utils/api";
 import { showErrorAlert, showSuccessAlert } from "../../utils/alert";
+import LoadingComponent from "../LoadingComponent";
 
 const FormArticleComponent = ({ isEdit }) => {
   const { id, slug } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [form, handleChange, handleFileChange, setForm] = useForm({
     title: "",
     content: "",
@@ -23,8 +25,9 @@ const FormArticleComponent = ({ isEdit }) => {
 
   useEffect(() => {
       if (isEdit) {
-         getArticleDataById(slug)
-         .then((response) => {
+        setLoading(true);
+        getArticleDataById(slug)
+        .then((response) => {
             const data = response.data.data;
             const metaTagString = data.meta_tag.join(", ");
 
@@ -40,7 +43,9 @@ const FormArticleComponent = ({ isEdit }) => {
             });
          }).catch((error) => {
             console.err("error", error);
-         })
+         }).finally(() => {
+            setLoading(false);
+         });
       }
    }, [isEdit, slug])
 
@@ -54,6 +59,7 @@ const FormArticleComponent = ({ isEdit }) => {
       return;
     }
 
+    setLoading(true);
     const formData = new FormData();
     metaTagArray.forEach((tag) => formData.append("meta_tag[]", tag));;
     formData.append("date", new Date().toISOString());
@@ -79,8 +85,12 @@ const FormArticleComponent = ({ isEdit }) => {
     } catch (error) {
       console.error(error);
       showErrorAlert("Error", "Failed to submit the article!");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <LoadingComponent />;
 
   return (
     <div className="container mx-auto px-10 pt-10">

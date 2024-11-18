@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthContext";
 const RegisterComponent = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const [form, handleChange] = useForm({
+  const {form, handleChange} = useForm({
     name: "",
     username: "",
     password: "",

@@ -10,7 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 const LoginComponent = () => {
   const navigate = useNavigate();
   const { isAuthenticated, login } = useAuth();
-  const [form, handleChange] = useForm({
+  const {form, handleChange} = useForm({
     username: "",
     password: "",
   });

@@ -9,7 +9,7 @@ const FormExperticeComponent = ({
   form,
 }) => {
   return (
-    <div className="container mx-auto px-52 pt-10">
+    <div className="container mx-auto px-10 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">

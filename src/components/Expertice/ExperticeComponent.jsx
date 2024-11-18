@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaHome,
   FaPencilAlt,
-  FaTrashAlt,
   FaAngleRight,
   FaPlus,
-  FaSearch,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import OverlayComponent from "../OverlayComponent";
 
-const ExpeticeComponent = ({expertice, handleDelete, navigationForm}) => {
+const ExpeticeComponent = ({expertice, navigationForm}) => {
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [overlayImageUrl, setOverlayImageUrl] = useState(null);
+  
+  const toggleOverlay = (imageUrl) => {
+    if (imageUrl) {
+      setOverlayImageUrl(imageUrl);
+    }
+    setIsOverlayVisible(!isOverlayVisible);
+  };
   return (
     <div className="container mx-auto px-10 pt-10">
       <nav className="flex mb-3" aria-label="Breadcrumb">
@@ -42,17 +50,6 @@ const ExpeticeComponent = ({expertice, handleDelete, navigationForm}) => {
           </h5>
 
           <div className="flex items-center space-x-4">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
-                <FaSearch />
-              </div>
-              <input
-                type="text"
-                id="table-search"
-                className="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-50 h-8 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search"
-              />
-            </div>
             <Link to="/dashboard/expertise/add">
               <button
                 type="button"
@@ -91,7 +88,12 @@ const ExpeticeComponent = ({expertice, handleDelete, navigationForm}) => {
                 <td className="px-6 py-4">{item.title}</td>
                 <td className="px-6 py-4 max-w-xs">{item.desc}</td>
                 <td className="px-6 py-4">
-                  <img src={item.icon} className="w-20 h-20" alt={item.title} />
+                  <button
+                    onClick={() => toggleOverlay(item.iconUrl)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Show Image
+                  </button>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <Link to={`/dashboard/expertise/edit/${item.id}`}>
@@ -102,19 +104,14 @@ const ExpeticeComponent = ({expertice, handleDelete, navigationForm}) => {
                       <FaPencilAlt />
                     </button>
                   </Link>
-                  <Link to={`/dashboard/expertise/delete/${item.id}`}>
-                    <button
-                      className="inline-flex items-center font-medium text-primary dark:text-blue-500 hover:text-red-700 dark:hover:text-blue-400"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {isOverlayVisible && (
+            <OverlayComponent imageUrl={overlayImageUrl} onClose={() => setIsOverlayVisible(false)} />
+         )}
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome, FaAngleRight } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { postAboutUsData, getAboutUsData, putAboutUsData } from "../../utils/api";
 import { showErrorAlert, showSuccessAlert } from "../../utils/alert";
+import LoadingComponent from "../LoadingComponent";
 
 const FormAboutUsComponent = ({ isEdit }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [form, handleChange, handleFileChange, setForm] = useForm({
     title: "",
     desc: "",
@@ -16,8 +18,9 @@ const FormAboutUsComponent = ({ isEdit }) => {
 
   useEffect(() => {
       if (isEdit) {
-         getAboutUsData(id)
-         .then((response) => {
+        setLoading(true);
+        getAboutUsData(id)
+        .then((response) => {
             const data = response.data.data;
 
             const editData = data.find((item) => item.id === id)
@@ -32,6 +35,8 @@ const FormAboutUsComponent = ({ isEdit }) => {
             showErrorAlert("Error", "Id is not found");
             navigate("/dashboard/about-us");
             console.err("error", error);
+         }).finally(() => {
+            setLoading(false);
          })
       }
    }, [])
@@ -44,6 +49,7 @@ const FormAboutUsComponent = ({ isEdit }) => {
       return;
     }
 
+    setLoading(true);
     const formData = new FormData();
     Object.entries(form).forEach(([key, value]) => {
       formData.append(key, value);
@@ -64,8 +70,12 @@ const FormAboutUsComponent = ({ isEdit }) => {
     } catch (error) {
       console.error(error);
       showErrorAlert("Error", "Failed to submit the about us!");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <LoadingComponent />
 
   return (
     <div className="container mx-auto px-10 pt-10">

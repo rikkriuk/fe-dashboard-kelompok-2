@@ -11,28 +11,23 @@ import {
   deleteExperticeData,
 } from "../utils/api";
 import { showConfirmationAlert, showErrorAlert, showSuccessAlert } from "../utils/alert";
+import LoadingComponent from "../components/LoadingComponent";
 
 const ExperticeContainer = () => {
   const location = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [expertice, setExpertice] = useState([
-    {
-      id: 1,
-      title: "Portfolio1",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae debitis officiis eveniet ab quia quos id inventore, laboriosam aliquam molestiae? Veniam odio autem quae! Quis deleniti nam laudantium consequatur repellendus!",
-      icon: "https://via.placeholder.com/300",
-    },
-  ]);
+  const [expertice, setExpertice] = useState([]);
   const [error, setError] = useState(null);
-  const [form, handleChange, handlefile, setForm] = useForm({
+  const {form, handleChange, setForm} = useForm({
     title: "",
     desc: "",
     icon: null,
   });
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const res = await getExperticeData();
       console.log(res.data.data);
@@ -70,20 +65,19 @@ const ExperticeContainer = () => {
 
   const handleDelete = async (id) => {
     const confirmation = await showConfirmationAlert(
-      "Konfirmasi Hapus",
-      "Apakah Anda yakin ingin menghapus data ini?"
+      "Delete Confirmation",
+      "Are you sure you want to delete this data?"
     )
 
     if (confirmation.isConfirmed) {
       try{
         setLoading(true);
-        const response = await deleteExperticeData(id);
-        console.log("Success:", response.data);
-        showSuccessAlert("Data berhasil dihapus!");
+        await deleteExperticeData(id);
+        showSuccessAlert("Success", "Expertice deleted successfully");
         fetchData();
       }catch (error) {
         console.error("Error:", error);
-        showErrorAlert("Terjadi kesalahan saat menghapus data!");
+        showErrorAlert("Error", "Something went wrong!");
       } finally {
         setLoading(false);
         fetchData();
@@ -91,6 +85,7 @@ const ExperticeContainer = () => {
       }
     }
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -124,6 +119,8 @@ const ExperticeContainer = () => {
 
   const isAdd = location.pathname.includes("/add");
   const isEdit = location.pathname.includes("/edit");
+
+  if (loading) return <LoadingComponent />;
 
   return (
     <>

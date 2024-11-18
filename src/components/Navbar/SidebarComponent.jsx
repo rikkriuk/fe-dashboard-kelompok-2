@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import {
   FaUsers,
@@ -19,11 +19,17 @@ import {
 
 const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { logout } = useAuth();
   const [isActivitiesOpen, setIsActivitiesOpen] = useState(true);
 
   const isActive = (path) => location.pathname === path;
   const toggleActivities = () => setIsActivitiesOpen(!isActivitiesOpen);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div className={`flex border ${isSidebarOpen ? "w-96" : "w-0"}`}>
@@ -209,7 +215,7 @@ const SidebarComponent = ({ isSidebarOpen, toggleSidebar }) => {
           {/* Logout */}
           <li className="mt-4">
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="flex items-center w-full p-3 text-gray-700 hover:bg-gray-100 rounded-md"
             >
               <FaSignOutAlt className="text-primary" />
